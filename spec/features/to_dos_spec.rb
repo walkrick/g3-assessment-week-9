@@ -21,5 +21,9 @@ feature "ToDos" do
     click_button "Add ToDo"
 
     expect(page).to have_content "ToDo added"
+
+    within ".todos" do
+      expect(page).to have_content "Get a haircut"
+    end
   end
 end

@@ -18,3 +18,9 @@
     </li>
   </ul>
 </form>
+
+<ul class="todos">
+  <% todos.each do |todo| %>
+      <li><%= todo.body %></li>
+  <% end %>
+</ul>
