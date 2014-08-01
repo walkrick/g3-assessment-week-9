@@ -2,10 +2,7 @@
 
 Welcome!
 
-
 - ActiveRecord + Sinatra
-
-- Existing Sign in
 
 - user can already create to do items
 

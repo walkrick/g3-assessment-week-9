@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ToDos</title>
+</head>
+<body>
+<h1><a href="/">ToDos</a></h1>
+
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
