@@ -2,15 +2,19 @@
 <html>
 <head>
   <title>ToDos</title>
+  <link rel="stylesheet" href="bootstrap.min.css"/>
+  <link rel="stylesheet" href="bootstrap-theme.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-<h1><a href="/">ToDos</a></h1>
 
-<% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-<% end %>
+<div id="container">
+  <% if flash[:notice] %>
+      <p class="flash bg-success"><%= flash[:notice] %></p>
+  <% end %>
 
-<%= yield %>
+  <%= yield %>
+</div>
 
 </body>
 </html>
