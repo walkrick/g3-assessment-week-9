@@ -24,9 +24,12 @@
   <div class="col-lg-8">
     <h2>ToDo List</h2>
     <ul class="todos">
-      <% todos.each do |todo| %>
-          <li><%= todo.body %></li>
+      <% todos.each do |body| %>
+        <!--<li><%= body.body %></li>-->
+        <li><%= body["body"] %> <br>
+          <a href="/to_do_items/<%= body["id"] %>/edit">Edit</a>
       <% end %>
+
     </ul>
   </div>
 </div>

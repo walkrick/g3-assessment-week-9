@@ -1,7 +1,7 @@
 require "sinatra"
 require "gschool_database_connection"
 require "rack-flash"
-
+require "active_record"
 require "./lib/to_do_item"
 require "./lib/user"
 
@@ -12,6 +12,9 @@ class ToDoApp < Sinatra::Application
   def initialize
     super
     GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
+    # @database_connection = GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
+    # @to_do_items_table = ToDoItemTable.new(GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"]))
+
   end
 
   get "/" do
@@ -27,7 +30,8 @@ class ToDoApp < Sinatra::Application
   end
 
   get "/register" do
-    erb :register, locals: {user: User.new}
+    erb :register
+        # locals: {user: User.new}
   end
 
   post "/registrations" do
@@ -67,6 +71,27 @@ class ToDoApp < Sinatra::Application
     redirect "/"
   end
 
+  # get "/to_do_items/:id/edit" do
+  #   body = @database_connection.sql("SELECT * FROM to_do_items WHERE id = #{params[:id]}").first
+  #
+  #   erb :"body/edit", locals: {body: body}
+  # end
+  #
+  # patch "/to_do_items/:id/patch" do
+  #   body = params[:body]
+  #   if message.length <= 140
+  #
+  #     @to_do_items_table.update(params[:id], params[:message])
+  #
+  #     flash[:notice] = "Message updated"
+  #     redirect "/"
+  #
+  #   else
+  #     flash[:error] = "Message must be less than 140 characters."
+  #     redirect "/messages/#{params[:id]}/edit"
+  #   end
+  # end
+
   private
 
   def authenticate_user
@@ -74,7 +99,9 @@ class ToDoApp < Sinatra::Application
   end
 
   def current_user
-    User.find_by(id: session[:user_id])
-  end
+    if session[:user_id]
+    User.find(session[:user_id])
+    end
+    end
 
 end

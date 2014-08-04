@@ -1,0 +1,13 @@
+<body>
+<form action="/to_do_items/<%= body["id"] %>/patch" method="post">
+  <input type="hidden" name="_method" value="patch"/>
+  <ul>
+    <li>
+      <label for="body">Message</label>
+      <input name="body" id="body" value="<%= body["body"] %>"/>
+    </li>
+    <input type="submit" value="Edit Message"/>
+    </li>
+  </ul>
+</form>
+</body>
